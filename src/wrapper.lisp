@@ -2,7 +2,10 @@
 (defpackage lev.wrapper
   (:use :cl)
   (:export :defanonenum
-           :lispify))
+           :lispify
+           :constant
+           :enumvalue
+           :variable))
 (in-package :lev.wrapper)
 
 (cl:defmacro defanonenum (cl:&body enums)

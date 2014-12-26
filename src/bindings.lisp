@@ -392,7 +392,7 @@
 (defun ev-io-set (ev fd_ events_)
   (cffi:with-foreign-slots ((fd events) ev (:struct ev-io))
     (setf fd fd_
-          events (logxor events_ ev--iofdset))))
+          events (logxor events_ +ev--iofdset+))))
 
 (defun ev-timer-set (ev after_ repeat_)
   (cffi:with-foreign-slots ((at repeat) ev (:struct ev-timer))
@@ -502,7 +502,7 @@
 (defun ev-set-cb (ev cb)
   (setf (ev-cb ev) cb))
 
-#.(if (= ev-minpri ev-maxpri)
+#.(if (= +ev-minpri+ +ev-maxpri+)
       `(progn
          (defun ev-priority (ev)
            ,ev-minpri)
@@ -686,7 +686,7 @@
 
 #+lev-ev-compat3
 (progn
-  (defconstant #.(lispify "EVLOOP_NONBLOCK" 'contant) #.(lispify "EVRUN_NOWAIT" 'contant))
+  (defconstant #.(lispify "EVLOOP_NONBLOCK" 'contant) #.(lispify "EVRUN_NOWAIT" 'constant))
   (defconstant #.(lispify "EVLOOP_ONESHOT" 'constant) #.(lispify "EVRUN_ONCE" 'constant))
   (defconstant #.(lispify "EVUNLOOP_CANCEL" 'constant) #.(lispify "EVBREAK_CANCEL" 'constant))
   (defconstant #.(lispify "EVUNLOOP_ONE" 'constant) #.(lispify "EVBREAK_ONE" 'constant))
