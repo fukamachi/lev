@@ -59,12 +59,12 @@
       (#.(lispify "cb" 'slotname) :pointer)))
   (defparameter *ev-watcher-list-slots*
     `(,@*ev-watcher-slots*
-      (#.(lispify "next" 'slotname) :pointer) ;; private
-      ))
+      ;; private
+      (#.(lispify "next" 'slotname) :pointer)))
   (defparameter *ev-watcher-time-slots*
     `(,@*ev-watcher-slots*
-      (#.(lispify "at" 'slotname) :double) ;; private
-      )))
+      ;; private
+      (#.(lispify "at" 'slotname) :double))))
 
 #.`(cffi:defcstruct #.(lispify "ev_watcher" 'classname)
      ,@*ev-watcher-slots*)
