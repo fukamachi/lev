@@ -12,6 +12,7 @@
 (cl:export '#.(lispify "EV__IOFDSET" 'enumvalue))
 (cl:export '#.(lispify "EV_IO" 'enumvalue))
 (cl:export '#.(lispify "EV_TIMER" 'enumvalue))
+#+lev-ev-compat3
 (cl:export '#.(lispify "EV_TIMEOUT" 'enumvalue))
 (cl:export '#.(lispify "EV_PERIODIC" 'enumvalue))
 (cl:export '#.(lispify "EV_SIGNAL" 'enumvalue))
@@ -70,6 +71,7 @@
 (cl:export '#.(lispify "EVFLAG_NOENV" 'enumvalue))
 (cl:export '#.(lispify "EVFLAG_FORKCHECK" 'enumvalue))
 (cl:export '#.(lispify "EVFLAG_NOINOTIFY" 'enumvalue))
+#+lev-ev-compat3
 (cl:export '#.(lispify "EVFLAG_NOSIGFD" 'enumvalue))
 (cl:export '#.(lispify "EVFLAG_SIGNALFD" 'enumvalue))
 (cl:export '#.(lispify "EVFLAG_NOSIGMASK" 'enumvalue))

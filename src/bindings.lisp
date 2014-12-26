@@ -30,8 +30,6 @@
   (#.(lispify "EV_WRITE" 'enumvalue) #x02)          ;; ev_io detected write will not block
   (#.(lispify "EV__IOFDSET" 'enumvalue) #x80)       ;; internal use only
   (#.(lispify "EV_TIMER" 'enumvalue) #x00000100)    ;; timer timed out
-  #+ev-compat3
-  (#.(lispify "EV_TIMEOUT" 'enumvalue) EV_TIMER)    ;; pre 4.0 API compatibility
   (#.(lispify "EV_PERIODIC" 'enumvalue) #x00000200) ;; periodic timer timed out
   (#.(lispify "EV_SIGNAL" 'enumvalue) #x00000400)   ;; signal was received
   (#.(lispify "EV_CHILD" 'enumvalue) #x00000800)    ;; child/pid has status change
@@ -48,6 +46,10 @@
 
 ;; alias for type-detection
 (defconstant #.(lispify "EV_IO" 'enumvalue) #.(lispify "EV_READ" 'enumvalue))
+
+#+lev-ev-compat3
+;; pre 4.0 API compatibility
+(defconstant #.(lispify "EV_TIMEOUT" 'enumvalue) #.(lispify "EV_TIMER" 'enumvalue))
 
 (eval-when (:compile-toplevel :load-toplevel)
   ;; shared by all watchers
@@ -211,7 +213,7 @@
   (#.(lispify "EVFLAG_FORKCHECK" 'enumvalue) #x02000000)  ;; check for a fork in each iteration
   ;; debugging/feature disable
   (#.(lispify "EVFLAG_NOINOTIFY" 'enumvalue) #x00100000)  ;; do not attempt to use inotify
-  #+ev-compat3
+  #+lev-ev-compat3
   (#.(lispify "EVFLAG_NOSIGFD" 'enumvalue) 0)             ;; compatibility to pre-3.9
   (#.(lispify "EVFLAG_SIGNALFD" 'enumvalue) #x00200000)   ;; attempt to use signalfd
   (#.(lispify "EVFLAG_NOSIGMASK" 'enumvalue) #x00400000)) ;; avoid modifying the signal mask
