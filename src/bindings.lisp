@@ -1,7 +1,7 @@
 (in-package :lev)
 
 #+lev-ev-full
-(progn
+(eval-when (:compile-toplevel :load-toplevel :execute)
   (pushnew :lev-ev-periodic *features*)
   (pushnew :lev-ev-stat *features*)
   (pushnew :lev-ev-prepare *features*)
