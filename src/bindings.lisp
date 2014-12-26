@@ -17,8 +17,9 @@
   #+lev-not-yet
   (pushnew :lev-ev-walk *features*))
 
-(defconstant #.(lispify "EV_MINPRI" 'constant) -2)
-(defconstant #.(lispify "EV_MAXPRI" 'constant) +2)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (defconstant #.(lispify "EV_MINPRI" 'constant) -2)
+  (defconstant #.(lispify "EV_MAXPRI" 'constant) +2))
 
 (defconstant #.(lispify "EV_VERSION_MAJOR" 'constant) 4)
 (defconstant #.(lispify "EV_VERSION_MINOR" 'constant) 15)
