@@ -15,7 +15,7 @@ LEV is [libev](http://software.schmorp.de/pkg/libev.html) bindings for Common Li
 (cffi:defcallback timeout-cb :void ((evloop :pointer) (timer :pointer) (revents :int))
   (declare (ignore timer revents))
   (format t "timeout~%")
-  (lev:ev-break evloop lev:EVBREAK-ONE))
+  (lev:ev-break evloop lev:+EVBREAK-ONE+))
 
 (let ((evloop (lev:ev-default-loop 0))
       (stdin-watcher (cffi:foreign-alloc '(:struct lev:ev-io)))
@@ -24,7 +24,7 @@ LEV is [libev](http://software.schmorp.de/pkg/libev.html) bindings for Common Li
       (progn
         ;; initialize an io watcher, then start it
         ;; this one will watch for stdin to become readable
-        (lev:ev-io-init stdin-watcher 'stdin-cb 0 lev:EV-READ)
+        (lev:ev-io-init stdin-watcher 'stdin-cb 0 lev:+EV-READ+)
         (lev:ev-io-start evloop stdin-watcher)
 
         ;; initialize a timer watcher, then start it
