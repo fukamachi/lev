@@ -385,8 +385,9 @@
   (loop :pointer))
 
 (defun ev-init (ev cb_)
-  (cffi:with-foreign-slots ((active priority cb) ev (:struct ev-io))
+  (cffi:with-foreign-slots ((active pending priority cb) ev (:struct ev-io))
     (setf active 0
+          pending 0
           priority 0
           cb (cffi:get-callback cb_))))
 
