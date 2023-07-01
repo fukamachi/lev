@@ -10,7 +10,8 @@
 
 (eval-when (:load-toplevel)
   (cffi:define-foreign-library libev
-    (:unix (:or "libev.4.dylib" "libev.4.so" "libev.so.4" "libev.dylib" "libev.so"))
+    (:darwin (:or "libev.4.dylib" "libev.dylib"))
+    (:unix (:or "libev.4.so" "libev.so.4" "libev.so"))
     (t (:default "libev")))
 
   (unless (cffi:foreign-library-loaded-p 'libev)
