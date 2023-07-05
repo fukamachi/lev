@@ -16,7 +16,7 @@
   :version "0.1.0"
   :author "Eitaro Fukamachi"
   :license "BSD 2-Clause"
-  :depends-on (:cffi)
+  :depends-on (:cffi :lev-config)
   :components ((:module "src"
                 :components
                 ((:file "lev" :depends-on ("wrapper"))

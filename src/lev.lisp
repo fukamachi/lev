@@ -9,10 +9,13 @@
   (pushnew :lev-ev-full *features*))
 
 (eval-when (:load-toplevel)
-  (cffi:define-foreign-library libev
-    (:darwin (:or "libev.4.dylib" "libev.dylib"))
-    (:unix (:or "libev.4.so" "libev.so.4" "libev.so"))
-    (t (:default "libev")))
-
-  (unless (cffi:foreign-library-loaded-p 'libev)
-    (cffi:use-foreign-library libev)))
+  (handler-case
+      (cffi:foreign-library-loaded-p 'lev-config::libev)
+    (error (m)
+      (progn
+        (cffi:define-foreign-library libev
+          (:darwin (:or "libev.4.dylib" "libev.dylib"))
+          (:unix (:or "libev.4.so" "libev.so.4" "libev.so"))
+          (t (:default "libev")))
+        (unless (cffi:foreign-library-loaded-p 'libev)
+          (cffi:use-foreign-library libev))))))
